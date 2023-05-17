@@ -10,9 +10,11 @@ export const CardList = ({ list = [] }: Props): JSX.Element => {
 	return (
 		<div className={styles.container}>
 			<h2 className={styles.header}>Chuck out those jokes:</h2>
-			{list.map((item) => (
-				<Card key={item.id} {...item} />
-			))}
+			<div className={styles.list}>
+				{list.map((item) => (
+					<Card key={item.id} {...item} />
+				))}
+			</div>
 		</div>
 	);
 };
