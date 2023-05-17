@@ -26,7 +26,6 @@ function App(): JSX.Element {
 		if (!timeoutId) {
 			timeoutId = setTimeout(() => {
 				fetchJoke().then((result) => {
-					console.log('refresh!');
 					const temp = [...jokes];
 					temp.pop();
 					temp.unshift(result[0]);

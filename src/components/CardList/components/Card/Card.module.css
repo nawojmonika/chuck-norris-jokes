@@ -4,3 +4,29 @@
 	border-left: solid 5px #f15b23;
 	background-color: #eee;
 }
+
+.starIcon {
+	position: relative;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.starIcon > svg {
+	position: absolute;
+	transition: ease-in-out opacity 250ms;
+}
+
+.starIcon > svg:nth-child(2) {
+	opacity: 0;
+}
+
+.starIcon:hover > svg:first-child {
+	opacity: 0;
+}
+
+.starIcon:hover > svg:nth-child(2) {
+	opacity: 1;
+}
