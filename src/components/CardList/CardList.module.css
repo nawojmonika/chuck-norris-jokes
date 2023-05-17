@@ -7,12 +7,8 @@
 	text-align: center;
 }
 
-.list {
-	display: grid;
-}
-
 @media (min-width: 768px) {
 	.list {
-		grid-template-columns: 1fr 1fr;
+		columns: 2;
 	}
 }
