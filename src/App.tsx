@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { CardList } from './components/CardList';
 import { CardItem, fetchJoke } from './api';
+import { FavoritesWrapper } from './components/CardList/components/FavoritesContext';
 
 function App(): JSX.Element {
 	const [jokes, setJokes] = useState<CardItem[]>([]);
@@ -40,7 +41,11 @@ function App(): JSX.Element {
 		};
 	}, [jokes]);
 
-	return <CardList list={jokes} />;
+	return (
+		<FavoritesWrapper>
+			<CardList list={jokes} />
+		</FavoritesWrapper>
+	);
 }
 
 export default App;

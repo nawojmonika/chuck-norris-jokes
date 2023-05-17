@@ -23,10 +23,12 @@
 	opacity: 0;
 }
 
-.starIcon:hover > svg:first-child {
+.starIcon:hover > svg:first-child,
+.favorite > svg:first-child {
 	opacity: 0;
 }
 
-.starIcon:hover > svg:nth-child(2) {
+.starIcon:hover > svg:nth-child(2),
+.favorite > svg:nth-child(2) {
 	opacity: 1;
 }
