@@ -3,7 +3,11 @@ export type CardItem = {
 	value: string;
 };
 
-export const fetchJoke = async (): Promise<CardItem> => {
-	const result = await fetch('https://api.chucknorris.io/jokes/random');
-	return result.json();
+export const fetchJoke = async (limit = 1): Promise<CardItem[]> => {
+	const results = [];
+	for (let i = 0; i < limit; i++) {
+		const item = await fetch('https://api.chucknorris.io/jokes/random');
+		results.push(item.json());
+	}
+	return Promise.all(results);
 };
