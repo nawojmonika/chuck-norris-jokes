@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 type FavoritesContextData = {
 	favorites: string[];
@@ -27,16 +27,34 @@ export const FavoritesWrapper = ({
 }: Props): JSX.Element => {
 	const [favorites, setFavorites] = useState<string[]>([]);
 
-	const addFavorite = (id: string) => {
+	const updateFavorites = (items: string[]): void => {
+		setFavorites(items);
+		localStorage.setItem('favorites', JSON.stringify(items));
+	};
+
+	const addFavorite = (id: string): void => {
 		if (favorites.length < maxOptions) {
-			setFavorites([...favorites, id]);
+			updateFavorites([...favorites, id]);
 		}
 	};
 
-	const removeFavorite = (id: string) => {
+	const removeFavorite = (id: string): void => {
 		const updated = favorites.filter((item) => item !== id);
-		setFavorites(updated);
+		updateFavorites(updated);
 	};
+
+	useEffect(() => {
+		let ignore = false;
+
+		if (!ignore) {
+			const items = localStorage.getItem('favorites') || '';
+			setFavorites(JSON.parse(items));
+		}
+
+		return () => {
+			ignore = true;
+		};
+	}, []);
 
 	return (
 		<FavoritesContext.Provider
