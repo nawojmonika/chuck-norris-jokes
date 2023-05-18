@@ -59,7 +59,7 @@ export const FavoritesWrapper = ({
 		let ignore = false;
 
 		if (!ignore) {
-			const items = localStorage.getItem('favorites') || '';
+			const items = localStorage.getItem('favorites') || '[]';
 			setFavorites(JSON.parse(items));
 		}
 
