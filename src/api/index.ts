@@ -3,6 +3,9 @@ export type CardItem = {
 	value: string;
 };
 
+export const genericErrorResponse =
+	'Upss! Something went wrong, please try again later';
+
 export const fetchJoke = async (limit = 1): Promise<CardItem[]> => {
 	const results = [];
 	for (let i = 0; i < limit; i++) {

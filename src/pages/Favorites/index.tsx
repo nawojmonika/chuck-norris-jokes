@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { CardList } from '../../components/CardList';
-import { CardItem, fetchFavorites } from '../../api';
+import { CardItem, fetchFavorites, genericErrorResponse } from '../../api';
 import { useFavoritesContext } from '../../components/FavoritesContext';
 import { Link } from 'react-router-dom';
 import sadChuck from '../../assets/sad_chuck.png';
+import { enqueueSnackbar } from 'notistack';
 
 export const Favorites = (): JSX.Element => {
 	const [jokes, setJokes] = useState<CardItem[]>([]);
@@ -13,9 +14,17 @@ export const Favorites = (): JSX.Element => {
 		let ignore = false;
 
 		if (!ignore) {
-			fetchFavorites(favorites).then((result) => {
-				setJokes(result);
-			});
+			fetchFavorites(favorites).then(
+				(result) => {
+					setJokes(result);
+				},
+				(error) => {
+					console.error(error);
+					enqueueSnackbar(genericErrorResponse, {
+						variant: 'error',
+					});
+				}
+			);
 		}
 
 		return () => {
