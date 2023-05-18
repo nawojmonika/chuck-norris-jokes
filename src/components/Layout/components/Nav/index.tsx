@@ -1,13 +1,16 @@
 import { StarOutlined } from '@mui/icons-material';
 import { AppBar, Button, Toolbar, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import styles from './Nav.module.css';
 
 export const Nav = (): JSX.Element => {
 	return (
 		<AppBar position='static' sx={{ backgroundColor: 'var(--primary-color)' }}>
 			<Toolbar>
 				<Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-					Chuck Norris jokes
+					<Link className={styles.link} to='/'>
+						Chuck Norris jokes
+					</Link>
 				</Typography>
 				<Button color='inherit' component={Link} to='/'>
 					Home
