@@ -4,7 +4,7 @@ import styles from './Loading.module.css';
 
 export const Loading = (): JSX.Element => {
 	return (
-		<Box sx={{ position: 'relative', display: 'inline-flex' }}>
+		<Box className={styles.container}>
 			<CircularProgress size={120} sx={{ color: 'var(--primary-color)' }} />
 			<Box
 				sx={{
