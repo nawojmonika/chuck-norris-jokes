@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { CardItem } from '../../../../api';
 import { StarBorderOutlined, StarOutlined } from '@mui/icons-material';
-import { useFavoritesContext } from '../FavoritesContext';
+import { useFavoritesContext } from '../../../FavoritesContext';
 import styles from './Card.module.css';
 import { useMemo } from 'react';
 
