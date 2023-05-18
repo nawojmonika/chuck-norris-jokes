@@ -3,9 +3,10 @@ import { CardList } from '../../components/CardList';
 import { CardItem, fetchFavorites, genericErrorResponse } from '../../api';
 import { useFavoritesContext } from '../../components/FavoritesContext';
 import { Link } from 'react-router-dom';
-import sadChuck from '../../assets/sad_chuck.png';
 import { enqueueSnackbar } from 'notistack';
 import { Loading } from '../../components/Loading';
+import sadChuck from '../../assets/sad_chuck.png';
+import styles from './Favorites.module.css';
 
 export const Favorites = (): JSX.Element => {
 	const [jokes, setJokes] = useState<CardItem[]>([]);
@@ -13,9 +14,8 @@ export const Favorites = (): JSX.Element => {
 	const { favorites } = useFavoritesContext();
 
 	useEffect(() => {
-		let ignore = false;
-
-		if (!ignore) {
+		setIsLoading(true);
+		if (favorites.length) {
 			fetchFavorites(favorites).then(
 				(result) => {
 					setJokes(result);
@@ -28,11 +28,9 @@ export const Favorites = (): JSX.Element => {
 					});
 				}
 			);
+		} else {
+			setIsLoading(false);
 		}
-
-		return () => {
-			ignore = true;
-		};
 	}, [favorites]);
 
 	return (
@@ -41,13 +39,16 @@ export const Favorites = (): JSX.Element => {
 				<Loading />
 			) : (
 				<>
-					{jokes.length ? (
+					{favorites.length ? (
 						<CardList list={jokes} title='Chuck out my favorite jokes:' />
 					) : (
 						<>
 							<h3>
-								No jokes found, go <Link to={'/'}>here</Link> and find some new
-								Chuck Norris jokes!
+								No jokes found, go{' '}
+								<Link className={styles.link} to={'/'}>
+									here
+								</Link>{' '}
+								and favorite some new Chuck Norris jokes!
 							</h3>
 							<img src={sadChuck} alt='Sad Chuck image' aria-hidden={true} />
 						</>
