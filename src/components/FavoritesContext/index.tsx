@@ -1,11 +1,10 @@
+import { useSnackbar } from 'notistack';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 type FavoritesContextData = {
 	favorites: string[];
-	errorVisible: boolean;
 	addFavorite: (id: string) => void;
 	removeFavorite: (id: string) => void;
-	handleErrorClose: () => void;
 };
 
 type Props = {
@@ -15,10 +14,8 @@ type Props = {
 
 export const FavoritesContext = createContext<FavoritesContextData>({
 	favorites: [],
-	errorVisible: false,
 	addFavorite: () => undefined,
 	removeFavorite: () => undefined,
-	handleErrorClose: () => undefined,
 });
 
 export const useFavoritesContext = (): FavoritesContextData => {
@@ -30,7 +27,7 @@ export const FavoritesWrapper = ({
 	maxOptions = 10,
 }: Props): JSX.Element => {
 	const [favorites, setFavorites] = useState<string[]>([]);
-	const [errorVisible, setErrorVisible] = useState<boolean>(false);
+	const { enqueueSnackbar } = useSnackbar();
 
 	const updateFavorites = (items: string[]): void => {
 		setFavorites(items);
@@ -40,18 +37,22 @@ export const FavoritesWrapper = ({
 	const addFavorite = (id: string): void => {
 		if (favorites.length < maxOptions) {
 			updateFavorites([...favorites, id]);
+			enqueueSnackbar('Joke succesfully marked as favorite!', {
+				variant: 'success',
+			});
 		} else {
-			setErrorVisible(true);
+			enqueueSnackbar('You can only mark 10 jokes as favorite!', {
+				variant: 'error',
+			});
 		}
 	};
 
 	const removeFavorite = (id: string): void => {
 		const updated = favorites.filter((item) => item !== id);
 		updateFavorites(updated);
-	};
-
-	const handleErrorClose = () => {
-		setErrorVisible(false);
+		enqueueSnackbar('Joke succesfully removed from favorites!', {
+			variant: 'success',
+		});
 	};
 
 	useEffect(() => {
@@ -71,10 +72,8 @@ export const FavoritesWrapper = ({
 		<FavoritesContext.Provider
 			value={{
 				favorites,
-				errorVisible,
 				addFavorite,
 				removeFavorite,
-				handleErrorClose,
 			}}>
 			{children}
 		</FavoritesContext.Provider>
