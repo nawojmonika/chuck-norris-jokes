@@ -39,5 +39,5 @@ export const Home = (): JSX.Element => {
 		};
 	}, [jokes]);
 
-	return <CardList list={jokes} />;
+	return <CardList list={jokes} title='Chuck out those jokes:' />;
 };
