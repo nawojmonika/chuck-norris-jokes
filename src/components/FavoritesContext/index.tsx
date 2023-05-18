@@ -10,6 +10,7 @@ type FavoritesContextData = {
 type Props = {
 	children: React.ReactNode;
 	maxOptions?: number;
+	defaultFavorites?: string[];
 };
 
 export const FavoritesContext = createContext<FavoritesContextData>({
@@ -25,8 +26,9 @@ export const useFavoritesContext = (): FavoritesContextData => {
 export const FavoritesWrapper = ({
 	children,
 	maxOptions = 10,
+	defaultFavorites = [],
 }: Props): JSX.Element => {
-	const [favorites, setFavorites] = useState<string[]>([]);
+	const [favorites, setFavorites] = useState<string[]>(defaultFavorites);
 	const { enqueueSnackbar } = useSnackbar();
 
 	const updateFavorites = (items: string[]): void => {
