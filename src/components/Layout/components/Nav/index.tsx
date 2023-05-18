@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const Nav = (): JSX.Element => {
 	return (
-		<AppBar position='static' sx={{ backgroundColor: '#f15b23;' }}>
+		<AppBar position='static' sx={{ backgroundColor: 'var(--primary-color)' }}>
 			<Toolbar>
 				<Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
 					Chuck Norris jokes

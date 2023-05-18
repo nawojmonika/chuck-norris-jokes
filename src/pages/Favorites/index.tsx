@@ -5,9 +5,11 @@ import { useFavoritesContext } from '../../components/FavoritesContext';
 import { Link } from 'react-router-dom';
 import sadChuck from '../../assets/sad_chuck.png';
 import { enqueueSnackbar } from 'notistack';
+import { Loading } from '../../components/Loading';
 
 export const Favorites = (): JSX.Element => {
 	const [jokes, setJokes] = useState<CardItem[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const { favorites } = useFavoritesContext();
 
 	useEffect(() => {
@@ -17,6 +19,7 @@ export const Favorites = (): JSX.Element => {
 			fetchFavorites(favorites).then(
 				(result) => {
 					setJokes(result);
+					setIsLoading(false);
 				},
 				(error) => {
 					console.error(error);
@@ -34,15 +37,21 @@ export const Favorites = (): JSX.Element => {
 
 	return (
 		<>
-			{jokes.length ? (
-				<CardList list={jokes} title='Chuck out my favorite jokes:' />
+			{isLoading ? (
+				<Loading />
 			) : (
 				<>
-					<h3>
-						No jokes found, go <Link to={'/'}>here</Link> and find some new
-						Chuck Norris jokes!
-					</h3>
-					<img src={sadChuck} alt='Sad Chuck image' aria-hidden={true} />
+					{jokes.length ? (
+						<CardList list={jokes} title='Chuck out my favorite jokes:' />
+					) : (
+						<>
+							<h3>
+								No jokes found, go <Link to={'/'}>here</Link> and find some new
+								Chuck Norris jokes!
+							</h3>
+							<img src={sadChuck} alt='Sad Chuck image' aria-hidden={true} />
+						</>
+					)}
 				</>
 			)}
 		</>

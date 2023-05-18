@@ -1,10 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { CardItem, fetchJoke, genericErrorResponse } from '../../api';
 import { CardList } from '../../components/CardList';
 import { useSnackbar } from 'notistack';
+import { Loading } from '../../components/Loading';
 
 export const Home = (): JSX.Element => {
 	const [jokes, setJokes] = useState<CardItem[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const { enqueueSnackbar } = useSnackbar();
 
 	useEffect(() => {
@@ -14,6 +17,7 @@ export const Home = (): JSX.Element => {
 			fetchJoke(10).then(
 				(result) => {
 					setJokes(result);
+					setIsLoading(false);
 				},
 				(error) => {
 					console.error(error);
@@ -55,8 +59,15 @@ export const Home = (): JSX.Element => {
 			clearTimeout(timeoutId);
 			timeoutId = null;
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [jokes]);
 
-	return <CardList list={jokes} title='Chuck out those jokes:' />;
+	return (
+		<>
+			{isLoading ? (
+				<Loading />
+			) : (
+				<CardList list={jokes} title='Chuck out those jokes:' />
+			)}
+		</>
+	);
 };
