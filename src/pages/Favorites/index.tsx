@@ -14,7 +14,6 @@ export const Favorites = (): JSX.Element => {
 	const { favorites } = useFavoritesContext();
 
 	useEffect(() => {
-		setIsLoading(true);
 		if (favorites.length) {
 			fetchFavorites(favorites).then(
 				(result) => {
