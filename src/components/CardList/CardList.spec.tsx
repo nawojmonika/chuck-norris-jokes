@@ -1,18 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { CardItem } from '../../api';
 import { CardList, CardListProps } from './index';
-
-const cards: CardItem[] = [
-	{
-		id: 'ixj8vHsfSmic7BGoacVkKg',
-		value:
-			"If you're a horse, here's a little advice: Never look a gift CHUCK NORRIS in the mouth!",
-	},
-	{
-		id: 'kKS7Rhe3QDuMWVWKq6ZxZw',
-		value: 'Chuck Norris drives to Hawaii.',
-	},
-];
+import { cards } from '../../testUtils';
 
 type SetUpResult = {
 	title: HTMLElement | null;
