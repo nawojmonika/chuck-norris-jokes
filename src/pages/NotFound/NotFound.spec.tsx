@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { NotFound } from './index';
 
-describe('NotFound Page', () => {
+describe('NotFound page', () => {
 	test('Should render empty component', () => {
 		render(<NotFound />);
 		const empty = screen.getByTestId('Empty');
