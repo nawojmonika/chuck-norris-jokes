@@ -41,7 +41,7 @@ export const FavoritesWrapper = ({
 				variant: 'success',
 			});
 		} else {
-			enqueueSnackbar('You can only mark 10 jokes as favorite!', {
+			enqueueSnackbar(`You can only mark ${maxItems} jokes as favorite!`, {
 				variant: 'error',
 			});
 		}
