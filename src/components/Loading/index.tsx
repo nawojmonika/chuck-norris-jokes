@@ -21,7 +21,7 @@ export const Loading = (): JSX.Element => {
 					className={styles.chuck}
 					src={happyChuck}
 					alt='Happy Chuck image'
-					aria-hidden={true}
+					aria-hidden
 				/>
 			</Box>
 		</Box>

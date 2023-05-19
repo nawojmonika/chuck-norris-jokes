@@ -7,10 +7,9 @@ type FavoritesContextData = {
 	removeFavorite: (id: string) => void;
 };
 
-type Props = {
+export type FavoritesWrapperProps = {
 	children: React.ReactNode;
-	maxOptions?: number;
-	defaultFavorites?: string[];
+	maxItems?: number;
 };
 
 export const FavoritesContext = createContext<FavoritesContextData>({
@@ -25,10 +24,9 @@ export const useFavoritesContext = (): FavoritesContextData => {
 
 export const FavoritesWrapper = ({
 	children,
-	maxOptions = 10,
-	defaultFavorites = [],
-}: Props): JSX.Element => {
-	const [favorites, setFavorites] = useState<string[]>(defaultFavorites);
+	maxItems = 10,
+}: FavoritesWrapperProps): JSX.Element => {
+	const [favorites, setFavorites] = useState<string[]>([]);
 	const { enqueueSnackbar } = useSnackbar();
 
 	const updateFavorites = (items: string[]): void => {
@@ -37,7 +35,7 @@ export const FavoritesWrapper = ({
 	};
 
 	const addFavorite = (id: string): void => {
-		if (favorites.length < maxOptions) {
+		if (favorites.length < maxItems) {
 			updateFavorites([...favorites, id]);
 			enqueueSnackbar('Joke succesfully marked as favorite!', {
 				variant: 'success',
