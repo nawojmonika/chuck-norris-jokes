@@ -19,7 +19,7 @@ export const fetchFavorites = async (
 	favorites: string[]
 ): Promise<CardItem[]> => {
 	const results = [];
-	for (let id of favorites) {
+	for (const id of favorites) {
 		const item = await fetch(`https://api.chucknorris.io/jokes/${id}`);
 		results.push(item.json());
 	}

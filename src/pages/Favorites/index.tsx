@@ -42,10 +42,10 @@ export const Favorites = (): JSX.Element => {
 						<CardList list={jokes} title='Chuck out my favorite jokes:' />
 					) : (
 						<Empty>
-							No jokes found, go
+							No jokes found, go{' '}
 							<Link className={styles.link} to={'/'}>
 								here
-							</Link>
+							</Link>{' '}
 							and favorite some new Chuck Norris jokes!
 						</Empty>
 					)}
