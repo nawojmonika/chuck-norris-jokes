@@ -10,10 +10,11 @@
 .starIcon {
 	position: relative;
 	display: inline-block;
-	width: 1em;
-	height: 1em;
+	width: 25px;
+	height: 25px;
 	margin-right: 10px;
 	cursor: pointer;
+	flex-shrink: 0;
 }
 
 .starIcon > svg {

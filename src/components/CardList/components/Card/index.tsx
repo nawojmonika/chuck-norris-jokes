@@ -20,14 +20,14 @@ export const Card = ({
 
 	return (
 		<div className={styles.card}>
-			<span
+			<div
 				data-testid='FavoriteIcon'
 				className={clsx(styles.starIcon, isFavorite && styles.favorite)}
 				onClick={handleFavorite}>
 				<StarBorderOutlined />
 				<StarOutlined />
-			</span>
-			{value}
+			</div>
+			<div>{value}</div>
 		</div>
 	);
 };
