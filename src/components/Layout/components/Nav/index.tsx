@@ -5,7 +5,10 @@ import styles from './Nav.module.css';
 
 export const Nav = (): JSX.Element => {
 	return (
-		<AppBar position='static' sx={{ backgroundColor: 'var(--primary-color)' }}>
+		<AppBar
+			data-testid='Nav'
+			position='static'
+			sx={{ backgroundColor: 'var(--primary-color)' }}>
 			<Toolbar>
 				<Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
 					<Link className={styles.link} to='/'>

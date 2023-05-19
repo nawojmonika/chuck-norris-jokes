@@ -6,13 +6,7 @@ const setUp = (): void => {
 	render(
 		<Router>
 			<Routes>
-				<Route
-					path='/'
-					element={
-						<>
-							<Nav />
-						</>
-					}>
+				<Route path='/' element={<Nav />}>
 					<Route index element={<></>} />
 					<Route path='favorites' element={<></>} />
 				</Route>
