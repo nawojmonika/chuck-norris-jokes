@@ -4,6 +4,7 @@ import { CardItem, fetchJoke, genericErrorResponse } from '../../api';
 import { CardList } from '../../components/CardList';
 import { useSnackbar } from 'notistack';
 import { Loading } from '../../components/Loading';
+import { Empty } from '../../components/Empty';
 
 export const Home = (): JSX.Element => {
 	const [jokes, setJokes] = useState<CardItem[]>([]);
@@ -65,8 +66,10 @@ export const Home = (): JSX.Element => {
 		<>
 			{isLoading ? (
 				<Loading />
-			) : (
+			) : jokes.length ? (
 				<CardList list={jokes} title='Chuck out those jokes:' />
+			) : (
+				<Empty />
 			)}
 		</>
 	);

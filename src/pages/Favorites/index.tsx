@@ -5,7 +5,7 @@ import { useFavoritesContext } from '../../components/FavoritesContext';
 import { Link } from 'react-router-dom';
 import { enqueueSnackbar } from 'notistack';
 import { Loading } from '../../components/Loading';
-import sadChuck from '../../assets/sad_chuck.png';
+import { Empty } from '../../components/Empty';
 import styles from './Favorites.module.css';
 
 export const Favorites = (): JSX.Element => {
@@ -41,16 +41,13 @@ export const Favorites = (): JSX.Element => {
 					{favorites.length ? (
 						<CardList list={jokes} title='Chuck out my favorite jokes:' />
 					) : (
-						<>
-							<h3>
-								No jokes found, go{' '}
-								<Link className={styles.link} to={'/'}>
-									here
-								</Link>{' '}
-								and favorite some new Chuck Norris jokes!
-							</h3>
-							<img src={sadChuck} alt='Sad Chuck image' aria-hidden={true} />
-						</>
+						<Empty>
+							No jokes found, go
+							<Link className={styles.link} to={'/'}>
+								here
+							</Link>
+							and favorite some new Chuck Norris jokes!
+						</Empty>
 					)}
 				</>
 			)}

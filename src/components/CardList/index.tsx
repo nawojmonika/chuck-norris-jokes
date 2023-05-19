@@ -1,16 +1,19 @@
 import { CardItem } from '../../api';
 import { Card } from './components/Card';
-import styles from './CardList.module.css';
 import { TransitionGroup } from 'react-transition-group';
 import { Collapse } from '@mui/material';
 import { useFavoritesContext } from '../FavoritesContext';
+import styles from './CardList.module.css';
 
-type Props = {
+export type CardListProps = {
 	list: CardItem[];
 	title?: string;
 };
 
-export const CardList = ({ list = [], title = '' }: Props): JSX.Element => {
+export const CardList = ({
+	list = [],
+	title = '',
+}: CardListProps): JSX.Element => {
 	const { favorites, removeFavorite, addFavorite } = useFavoritesContext();
 	const toggleFavorite = (id: string, isFavorite: boolean): void => {
 		isFavorite ? removeFavorite(id) : addFavorite(id);
