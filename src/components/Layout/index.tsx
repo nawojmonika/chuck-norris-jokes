@@ -6,15 +6,13 @@ import styles from './Layout.module.css';
 
 export const Layout = (): JSX.Element => {
 	return (
-		<>
+		<div className={styles.container}>
 			<Nav />
-			<div className={styles.container}>
-				<SnackbarProvider>
-					<FavoritesWrapper>
-						<Outlet />
-					</FavoritesWrapper>
-				</SnackbarProvider>
-			</div>
-		</>
+			<SnackbarProvider>
+				<FavoritesWrapper>
+					<Outlet />
+				</FavoritesWrapper>
+			</SnackbarProvider>
+		</div>
 	);
 };
