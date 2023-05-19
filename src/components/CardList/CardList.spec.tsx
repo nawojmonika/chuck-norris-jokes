@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { CardItem } from '../../api';
-import { CardList, CardListProps } from '.';
+import { CardList, CardListProps } from './index';
 
 const cards: CardItem[] = [
 	{

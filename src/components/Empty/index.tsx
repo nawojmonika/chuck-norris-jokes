@@ -1,6 +1,6 @@
 import sadChuck from '../../assets/sad_chuck.png';
 
-type EmptyProps = {
+export type EmptyProps = {
 	children?: React.ReactNode;
 };
 
