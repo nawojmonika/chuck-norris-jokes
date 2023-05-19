@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { CardList, CardListProps } from './index';
-import { cards } from '../../testUtils';
+import { mockCards } from '../../testUtils';
 
 type SetUpResult = {
 	title: HTMLElement | null;
 };
 
 const setUp = (props?: Partial<CardListProps>): SetUpResult => {
-	render(<CardList list={cards} {...props} />);
+	render(<CardList list={mockCards} {...props} />);
 	const title = screen.queryByRole('heading', { level: 2 });
 	return { title };
 };
@@ -24,8 +24,8 @@ describe('CardList component', () => {
 	});
 	test('Should render passed cards in a list', (): void => {
 		setUp();
-		const cardContent1 = screen.getByText(cards[0].value);
-		const cardContent2 = screen.getByText(cards[1].value);
+		const cardContent1 = screen.getByText(mockCards[0].value);
+		const cardContent2 = screen.getByText(mockCards[1].value);
 		expect(cardContent1).toBeVisible();
 		expect(cardContent2).toBeVisible();
 	});

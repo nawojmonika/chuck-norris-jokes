@@ -20,7 +20,7 @@ export const CardList = ({
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} data-testid='CardList'>
 			{title && <h2 className={styles.header}>{title}</h2>}
 			<TransitionGroup className={styles.list}>
 				{list.map((item) => (

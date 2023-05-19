@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Card, CardProps } from './index';
-import { cards } from '../../../../testUtils';
+import { mockCards } from '../../../../testUtils';
 
 type SetUpResult = {
 	favoriteIcon: HTMLElement;
@@ -10,7 +10,7 @@ type SetUpResult = {
 };
 
 const setUp = (props?: Partial<CardProps>): SetUpResult => {
-	render(<Card {...cards[0]} {...props} />);
+	render(<Card {...mockCards[0]} {...props} />);
 	const notFavoriteIcon = screen.getByTestId('StarOutlinedIcon');
 	const favoriteIcon = screen.getByTestId('StarBorderOutlinedIcon');
 	const iconContainer = screen.getByTestId('FavoriteIcon');
@@ -21,7 +21,7 @@ const setUp = (props?: Partial<CardProps>): SetUpResult => {
 describe('Card component', () => {
 	test('Should render Card content', (): void => {
 		setUp();
-		const content = screen.getByText(cards[0].value);
+		const content = screen.getByText(mockCards[0].value);
 		expect(content).toBeInTheDocument();
 	});
 	test('Card should not be set as favorite by default', (): void => {
@@ -48,6 +48,6 @@ describe('Card component', () => {
 		const toggleFavorite = jest.fn();
 		const { iconContainer } = setUp({ toggleFavorite, isFavorite: true });
 		userEvent.click(iconContainer);
-		expect(toggleFavorite).toBeCalledWith(cards[0].id, true);
+		expect(toggleFavorite).toBeCalledWith(mockCards[0].id, true);
 	});
 });

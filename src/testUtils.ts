@@ -1,6 +1,6 @@
 import { CardItem } from './api';
 
-export const cards: CardItem[] = [
+export const mockCards: CardItem[] = [
 	{
 		id: 'ixj8vHsfSmic7BGoacVkKg',
 		value:
